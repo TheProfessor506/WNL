@@ -117,7 +117,7 @@ function App() {
           className="contact-card glass-panel"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "0px" }}
         >
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
