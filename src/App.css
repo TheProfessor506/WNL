@@ -8,6 +8,7 @@
   top: 0;
   left: 0;
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -118,6 +119,7 @@
 .contact-section {
   position: relative;
   margin-top: 100vh;
+  margin-top: 100dvh;
   min-height: 120vh;
   /* gives room to scroll smoothly past the hero section */
   width: 100%;
@@ -246,11 +248,31 @@
 }
 
 @media (max-width: 768px) {
-  .glass-panel {
-    padding: 3rem 2rem;
+  .hero-section h1 {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 
   .contact-section {
-    min-height: 100vh;
+    padding: 1rem;
+    min-height: 100dvh;
+  }
+
+  .glass-panel {
+    padding: 3rem 1.5rem;
+    margin-top: 5vh;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    padding: 2rem 1.5rem;
   }
 }
