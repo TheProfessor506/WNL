@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { MapPin, Phone, Mail, Globe, Clipboard, CheckCircle, DollarSign, FileText, CreditCard, Shield } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe, Clipboard, CheckCircle, DollarSign, FileText, CreditCard, Shield, Check } from 'lucide-react';
 import './App.css';
 
 const textContent = {
@@ -53,7 +53,14 @@ const textContent = {
 function App() {
   const containerRef = useRef(null);
   const [lang, setLang] = useState('en');
+  const [copiedEmail, setCopiedEmail] = useState(null);
   const t = textContent[lang];
+
+  const handleCopyEmail = (email) => {
+    navigator.clipboard.writeText(email);
+    setCopiedEmail(email);
+    setTimeout(() => setCopiedEmail(null), 2000);
+  };
 
   // Track scroll position for hero fade out
   const { scrollYProgress } = useScroll({
@@ -262,7 +269,24 @@ function App() {
               </div>
               <div>
                 <h3>{t.emailUs}</h3>
-                <p>placeholder<br />placeholder</p>
+                <div className="email-list">
+                  <p
+                    className="copyable-email"
+                    onClick={() => handleCopyEmail('office@wnl.ro')}
+                    title="Copy to clipboard"
+                  >
+                    office@wnl.ro
+                    {copiedEmail === 'office@wnl.ro' ? <Check size={14} className="copy-icon success" /> : <Clipboard size={14} className="copy-icon" />}
+                  </p>
+                  <p
+                    className="copyable-email"
+                    onClick={() => handleCopyEmail('accounting@wnl.ro')}
+                    title="Copy to clipboard"
+                  >
+                    accounting@wnl.ro
+                    {copiedEmail === 'accounting@wnl.ro' ? <Check size={14} className="copy-icon success" /> : <Clipboard size={14} className="copy-icon" />}
+                  </p>
+                </div>
               </div>
             </motion.div>
 
