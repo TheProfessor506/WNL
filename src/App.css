@@ -51,8 +51,9 @@
 .hero-section h1 {
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.3em;
   background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -115,20 +116,119 @@
   right: -200px;
 }
 
-/* Contact Section */
-.contact-section {
+/* About Section */
+.about-section {
   position: relative;
-  margin-top: 100vh;
   margin-top: 100dvh;
-  min-height: 120vh;
-  /* gives room to scroll smoothly past the hero section */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   z-index: 10;
-  background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 20%);
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 15%, var(--bg-dark) 100%);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.services-header {
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-header h2,
+.services-header h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.1em;
+  background: linear-gradient(to right, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-text {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 2.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+.service-item .icon-wrapper {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(99, 102, 241, 0.15));
+}
+
+.service-item:hover .icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(99, 102, 241, 0.25));
+}
+
+.service-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-1);
+}
+
+.service-item h3 {
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.service-item p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-bottom: 6rem;
+  z-index: 10;
+  background: var(--bg-dark);
 }
 
 .glass-panel {
@@ -142,14 +242,14 @@
   width: 100%;
   max-width: 1100px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  margin-top: 10vh;
-  /* space it down slightly inside the minimum 120vh range */
+  /* removed margin-top */
 }
 
 .contact-section h2 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.1em;
   text-align: center;
   background: linear-gradient(to right, #ffffff, #e2e8f0);
   -webkit-background-clip: text;
@@ -259,15 +359,19 @@
 
   .contact-section {
     padding: 1rem;
-    min-height: 100dvh;
+  }
+
+  .about-section {
+    padding: 1rem;
+    margin-top: 100dvh;
   }
 
   .glass-panel {
     padding: 3rem 1.5rem;
-    margin-top: 5vh;
   }
 
-  .contact-grid {
+  .contact-grid,
+  .services-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -275,4 +379,48 @@
   .contact-item {
     padding: 2rem 1.5rem;
   }
+}
+
+/* Language Toggle */
+.language-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.language-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.language-btn:hover {
+  color: var(--text-main);
+}
+
+.language-btn.active {
+  color: var(--accent-2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lang-separator {
+  color: var(--text-muted);
+  opacity: 0.5;
 }
